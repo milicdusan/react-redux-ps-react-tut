@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 
 export default class CoursesPage extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    course: {
+      title: ""
+    }
+  };
 
-    this.state = {
-      course: {
-        title: ""
-      }
-    };
-  }
-
-  handleChange(event) {
+  handleChange = event => {
     const course = { ...this.state.course, title: event.target.value };
     this.setState({ course });
-  }
+  };
 
   render() {
     return (
