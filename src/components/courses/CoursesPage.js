@@ -22,21 +22,27 @@ class CoursesPage extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h2>Courses</h2>
-        <h3>Add Course</h3>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.course.title}
-        />
-        <input type="submit" value="Save" />
-      </form>
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <h2>Courses</h2>
+          <h3>Add Course</h3>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.course.title}
+          />
+          <input type="submit" value="Save" />
+        </form>
+        {this.props.courses.map(course => (
+          <div key={course.title}>{course.title}</div>
+        ))}
+      </>
     );
   }
 }
 
 CoursesPage.propTypes = {
+  courses: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
