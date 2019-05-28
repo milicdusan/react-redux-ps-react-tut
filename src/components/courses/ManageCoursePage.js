@@ -18,7 +18,6 @@ function ManageCoursePage({
   ...props
 }) {
   const [course, setCourse] = useState({ ...props.course });
-  //eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
@@ -49,10 +48,15 @@ function ManageCoursePage({
   function handleSave(event) {
     event.preventDefault();
     setSaving(true);
-    saveCourse(course).then(() => {
-      toast.success("Course saved.");
-      history.push("/courses");
-    });
+    saveCourse(course)
+      .then(() => {
+        toast.success("Course saved.");
+        history.push("/courses");
+      })
+      .catch(error => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
   }
 
   return authors.length === 0 || courses.length === 0 ? (
